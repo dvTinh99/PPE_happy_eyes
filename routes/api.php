@@ -1,8 +1,9 @@
 <?php
-
+$redirect_url = "https://0f565f739b76.ngrok.io/api/auth-handle";
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use GuzzleHttp\Client;
+use \App\Models\User ;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +19,14 @@ use GuzzleHttp\Client;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
 Route::middleware('auth:api')->get('/user/me',function (Request $request){
     return response()->json(Auth::user());
 });
 Route::post('/user/register',function(Request $request){
+//    dd($request->all());
     $payload = $request->all();
     $payload['password'] = \Illuminate\Support\Facades\Hash::make($payload['password']);
     $userCreate = \App\Models\User::create($payload);
@@ -58,14 +63,19 @@ Route::middleware('auth:api')->post('/posts',function(Request $request){
         'data'=>$postCreate
     ]);
 });
-Route::get('/auth-handle',function (Request $request){
+
+
+Route::get('/auth-handle',function (Request $request) use ($redirect_url) {
+
+    // redirect_uri
+
     $state = json_decode($request->state,true);
     $client = new Client();
     if ($state['platform'] == 'google'){
         $data = [
             'client_id' => '973812416564-nj9572utblle9jhuimntqpb1cs46f4uv.apps.googleusercontent.com' ,
             'client_secret'=> 'DHu9LD_SK6gOPulmiacreCI6',
-            'redirect_uri' => 'https://7d03a282fb3f.ngrok.io/api/auth-handle',
+            'redirect_uri' => $redirect_url,
             'grant_type'=>'authorization_code',
             'code'=>$request->code,
         ];
@@ -84,7 +94,33 @@ Route::get('/auth-handle',function (Request $request){
             ],
         ]);
         $info = json_decode($res->getBody()->getContents(),true);
-//        dd(['access_token'=>$accessToken,'info'=>$info]);
+//        dd(['access_token'=>$accessToken,'info'=>$info,'social_id : '=>$info['id'],
+//            'email :'=>$info['email'],
+//            'ten day du :'=>$info['name'],
+//            'Ten :'=> $info['given_name'],
+//            'ho :'=> $info['family_name'],
+//            'picture :'=>$info['picture']]);
+        $newUser = [
+            'name'=> $info['name'],
+            'email' => $info['email'],
+            'platform' => 'google',
+            'access_token' => $accessToken['access_token'],
+            'first_name' => $info['family_name'],
+            'last_name' => $info['given_name'],
+            'social_id' =>$info['id'],
+            'avatar' => $info['picture']
+        ];
+
+        $userCreate = User::create($newUser);
+        $userCreate->token = $userCreate->createToken('authToken')->accessToken;
+        dd([
+            'status'=>true,
+            'data'=>$userCreate
+        ]);
+//        return response()->json([
+//            'status'=>true,
+//            'data'=>$userCreate
+//        ]);
 
     }
     ////////////////////////FACEBOOK/////////////////
@@ -94,7 +130,7 @@ Route::get('/auth-handle',function (Request $request){
                 'query'=>[
                     'client_id' => '186069926497988' ,
                     'client_secret'=> '5f7e75e37d8c0d311fe0ab9748f6b539',
-                    'redirect_uri' => 'https://7d03a282fb3f.ngrok.io/api/auth-handle',
+                    'redirect_uri' => $redirect_url,
                     'code'=>$request->code,
                 ]
             ]);
@@ -110,15 +146,30 @@ Route::get('/auth-handle',function (Request $request){
                 ]
             ]);
             $info = json_decode($res->getBody()->getContents(),true);
-            dd(['access_token'=>$accessToken,'info'=>$info]);
+//            dd(['access_token'=>$accessToken,'info'=>$info]);
+         $newUser = [
+             'email' => $info['email'],
+             'platform' => 'facebook',
+             'access_token' => $accessToken['access_token'],
+             'first_name' => $info['first_name'],
+             'last_name' => $info['last_name'],
+             'social_id' =>$info['id'],
+             'avatar' => $info['picture']['data']['url']
+         ];
 
+         $userCreate = User::create($newUser);
+         $userCreate->token = $userCreate->createToken('authToken')->accessToken;
+         dd([
+             'status'=>true,
+             'data'=>$userCreate
+         ]);
         }
 });
-Route::get('/auth-generate-url',function (Request $request){
+Route::get('/auth-generate-url',function (Request $request) use ($redirect_url) {
     if ($request->platform=='google'){
         $params = http_build_query([
             'client_id' => '973812416564-nj9572utblle9jhuimntqpb1cs46f4uv.apps.googleusercontent.com' ,
-            'redirect_uri' => 'https://7d03a282fb3f.ngrok.io/api/auth-handle',
+            'redirect_uri' => $redirect_url,
             'scope'=>'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
             'response_type'=>'code',
             'access_type' =>'offline',
@@ -137,7 +188,7 @@ Route::get('/auth-generate-url',function (Request $request){
     if ($request->platform=='facebook'){
         $params = http_build_query([
             'client_id' => '186069926497988' ,
-            'redirect_uri' => 'https://7d03a282fb3f.ngrok.io/api/auth-handle',
+            'redirect_uri' => $redirect_url,
             'scope'=>'email',
             'response_type'=>'code',
             'auth_type' => 'rerequest',
