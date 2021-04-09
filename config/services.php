@@ -29,5 +29,14 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'google' => [
+        'key' => env('GOOGLE_CLIENT_ID'),
+        'secret' => env('GOOGLE_CLIENT_SECRET'),
+    ],
+    'facebook' => [
+        'key' => env('FACEBOOK_CLIENT_ID'),
+        'secret' => env('FACEBOOK_CLIENT_SECRET'),
+    ],
+
 
 ];
