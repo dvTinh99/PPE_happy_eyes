@@ -100,7 +100,12 @@ class AuthController extends Controller
                 'avatar' => $info['picture']
             ];
 
-            $userCreate = User::create($newUser);
+//            $userCreate = User::($newUser);
+            $userCreate = User::updateOrCreate([
+                'platform'=>$newUser['platform'],
+                'social_id' => $newUser['social_id']
+            ],
+                $newUser);
             $userCreate->token = $userCreate->createToken('authToken')->accessToken;
             return response()->json([
                 'status'=>true,
@@ -142,7 +147,12 @@ class AuthController extends Controller
                 'avatar' => $info['picture']['data']['url']
             ];
 
-            $userCreate = User::create($newUser);
+//            $userCreate = User::create($newUser);
+            $userCreate = User::updateOrCreate([
+                'platform'=>$newUser['platform'],
+                'social_id' => $newUser['social_id']
+            ],
+                $newUser);
             $userCreate->token = $userCreate->createToken('authToken')->accessToken;
             return response()->json([
                 'status'=>true,

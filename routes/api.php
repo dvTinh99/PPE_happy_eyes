@@ -29,12 +29,19 @@ use \App\Http\Controllers\Api\UserController;
 Route::prefix('user')->group(function(){
     Route::post('/register',[UserController::class,'register']);
     Route::post('/login',[UserController::class,'login']);
+    //Add comment theo post id và user id,
     Route::post('/comment',[UserController::class,'Comment']);
+    //Get all list of post,
     Route::get('/posts',[UserController::class,'getListPost']);
+    //Update Post,
     Route::post('/update-post',[UserController::class,'updatePost']);
-    Route::post('/get-post-by-id',[UserController::class,'getPostByID']);
+    //Get detail của Posts theo post id.
+    Route::get('/get-post-by-id/{id}',[UserController::class,'getPostByID']);
+    //Get comment theo user và post.
     Route::post('/get-comment-by-userandpost',[UserController::class,'getCommentByUserAndPost']);
-    Route::post('/delete-post',[UserController::class,'deletePost']);
+    //Delete Post,
+    Route::delete('/delete-post/{id}',[UserController::class,'deletePost']);
+    //Get posts of user hiện tại đăng nhập,
     Route::middleware('auth:api')->get('/posts-user-current',[UserController::class,'getPostCurrent']);
     Route::middleware('auth:api')->get('/me',[UserController::class,'getMe']);
 

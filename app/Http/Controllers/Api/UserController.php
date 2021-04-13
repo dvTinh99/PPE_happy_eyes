@@ -10,9 +10,21 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
 use App\Models\Post;
+use Validator;
+use Illuminate\Support\Arr;
 class UserController extends Controller
 {
     function register(Request $request){
+        $validator = Validator::make($request->all(),[
+            'name' => 'required',
+            'email'=>'required|email|unique:users',
+            'password' => 'required|min:6'
+        ]);
+        if ($validator->fails()){
+            return response()->json(['status'=>false,
+                'message' => Arr::first(Arr::first($validator->errors()->toArray())),
+                'errors'=>$validator->errors()]);
+        }
         $payload = $request->all();
         $payload['password'] = Hash::make($payload['password']);
         $userCreate = User::create($payload);
@@ -53,10 +65,9 @@ class UserController extends Controller
     function getListPost(){
         return response()->json(Post::all());
     }
-    function deletePost(Request $request){
-        $id = $request->all();
+    function deletePost($id){
         try {
-            $post = Post::destroy($id["post_id"]);
+            $post = Post::destroy($id);
             $message = "ok" ;
         }catch(Exception $e){
             $message = $e;
@@ -71,9 +82,8 @@ class UserController extends Controller
         $user = Auth::user();
         return response()->json(Post::all()->where('user_id',$user->id));
     }
-    function getPostByID(Request $request){
-        $id = $request->all();
-        $post = Post::where('id',$id["post_id"])->get();
+    function getPostByID($id){
+        $post = Post::where('id',$id)->get();
 
         return response()->json($post);
     }
