@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    dd('su doi lan 8');
+    dd('su doi lan 9');
 //    return view('welcome');
 });
