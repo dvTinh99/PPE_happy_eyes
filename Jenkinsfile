@@ -6,6 +6,11 @@ pipeline {
                 sh 'ls;composer'
             }
         }
+        stage('deploy') {
+            steps {
+                echo 'deploy'
+            }
+        }
     }
     post {
         always {
