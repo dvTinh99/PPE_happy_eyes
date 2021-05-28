@@ -17,3 +17,7 @@ Route::get('/', function () {
     dd('su doi lan 10');
 //    return view('welcome');
 });
+Route::get('/pipe-line', function () {
+    dd('su doi lan 10');
+//    return view('welcome');
+});
