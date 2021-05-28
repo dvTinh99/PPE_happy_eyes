@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    dd('su doi lan 10');
+    dd('su doi lan 11');
 //    return view('welcome');
 });
-Route::get('/pipe-line', function () {
-    dd('su doi lan 10');
+Route::get('/dvtinh', function () {
+    dd('su doi lan 11');
 //    return view('welcome');
 });
