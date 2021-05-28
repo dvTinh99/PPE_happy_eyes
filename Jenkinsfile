@@ -9,7 +9,7 @@ pipeline {
    }
    stage('Test') {
      steps {
-        sh 'composer install'
+        sh 'git pull;composer install'
      }
    }
    stage('Deploy') {
