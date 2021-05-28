@@ -1,33 +1,19 @@
 pipeline {
     agent any
     stages {
-        stage('Test') {
+        stage('Pull') {
             steps {
-                sh 'ls;composer'
+                sh 'cd /var/www/dvtinh.com/html/PPE_happy_eyes'
             }
+            
+        }
+        stage('install package'){
+                sh 'composer install'
         }
         stage('deploy') {
             steps {
                 echo 'deploy'
             }
-        }
-    }
-    post {
-        always {
-            echo 'This will always run'
-        }
-        success {
-            echo 'This will run only if successful'
-        }
-        failure {
-            echo 'This will run only if failed'
-        }
-        unstable {
-            echo 'This will run only if the run was marked as unstable'
-        }
-        changed {
-            echo 'This will run only if the state of the Pipeline has changed'
-            echo 'For example, if the Pipeline was previously failing but is now successful'
         }
     }
 }
