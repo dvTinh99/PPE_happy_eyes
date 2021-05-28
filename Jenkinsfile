@@ -4,7 +4,7 @@ pipeline {
    stages {
       stage('Build') {
         steps {
-          sh 'cd /var/www/dvtinh.com/html/PPE_happy_eyes/'
+          sh 'cd /var/www/dvtinh.com/html/PPE_happy_eyes; ls'
         }
    }
    stage('Test') {
