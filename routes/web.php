@@ -18,6 +18,6 @@ Route::get('/', function () {
 //    return view('welcome');
 });
 Route::get('/dvtinh', function () {
-    dd('su doi lan 11');
+    dd('su doi lan 12');
 //    return view('welcome');
 });
