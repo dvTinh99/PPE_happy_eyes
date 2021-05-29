@@ -4,13 +4,16 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building'
-        echo 'toang'
+        sh 'ls'
+        sh 'composer install'
       }
     }
 
     stage('Test') {
       steps {
         echo 'Testing'
+        sh 'php artisan test'
+        junit 'target/**/.xml'
       }
     }
 
