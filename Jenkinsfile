@@ -5,21 +5,19 @@ pipeline {
       steps {
         echo 'Building'
         sh 'ls'
+        sh 'composer install'
       }
     }
 
     stage('Test') {
       steps {
         echo 'Testing'
-        sh 'composer install'
       }
     }
 
     stage('Deploy') {
       steps {
         echo 'deploing'
-        sh '''cp .env.example env
-php artisan key:generate'''
       }
     }
 
