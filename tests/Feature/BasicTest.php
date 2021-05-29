@@ -17,10 +17,11 @@ class BasicTest extends TestCase
     {
         $response = $this->get('/test-jenkins');
 
-        // $response->assertStatus(200);
+        
         return response()->json([
             'message' => 'task test success'
         ], 200);
+        $response->assertStatus(200);
     }
     public function test_plus()
     {
