@@ -12,6 +12,8 @@ pipeline {
     stage('Test') {
       steps {
         echo 'Testing'
+        sh 'php artisan test'
+        junit 'target/**/.xml'
       }
     }
 
