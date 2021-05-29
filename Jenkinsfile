@@ -18,6 +18,8 @@ pipeline {
     stage('Deploy') {
       steps {
         echo 'deploing'
+        sh '''cp .env.example env
+php artisan key:generate'''
       }
     }
 
