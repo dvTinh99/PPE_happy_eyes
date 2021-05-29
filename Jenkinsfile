@@ -5,7 +5,6 @@ pipeline {
       steps {
         echo 'Building'
         sh 'ls'
-        sh 'composer install'
       }
     }
 
