@@ -11,7 +11,7 @@ pipeline {
     stage('Test') {
       steps {
         echo 'Testing'
-        echo 'master'
+        sh 'composer install'
       }
     }
 
