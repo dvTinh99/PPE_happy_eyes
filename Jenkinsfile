@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building'
-        echo 'toang'
+        sh 'ls'
       }
     }
 
