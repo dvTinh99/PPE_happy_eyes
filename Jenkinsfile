@@ -4,12 +4,12 @@ pipeline {
    stages {
       stage('Build') {
         steps {
-          sh 'cd /var/www/dvtinh.com/html/PPE_happy_eyes; ls'
+           sh 'git pull origin main;composer install'
         }
    }
    stage('Test') {
      steps {
-        sh 'git pull origin main;composer install'
+       sh 'php artisan test'
      }
    }
    stage('Deploy') {
