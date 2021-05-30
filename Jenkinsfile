@@ -21,10 +21,10 @@ pipeline {
         echo 'deploing'
       }
     }
-      post{
-          always{
-              emailext body: 'toang', subject: 'jenkin pipeline', to: 'tinh5969@gmail.com'
-          }
+  }
+  post{
+      always{
+          emailext body: 'toang', subject: 'jenkin pipeline', to: 'tinh5969@gmail.com'
       }
   }
 }
