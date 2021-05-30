@@ -13,23 +13,16 @@ class BasicTest extends TestCase
      *
      * @return void
      */
-    public function test_jenkin()
-    {
-        $response = $this->get('/test-jenkins');
-
-        
-        return response()->json([
-            'message' => 'task test success'
-        ], 200);
-        $response->assertStatus(200);
-    }
+    // public function test_jenkin()
+    // {
+    //     $response = $this->get('/test-jenkins');
+    //     $response->assertStatus(200);
+    // }
     public function test_plus()
     {
-        $response = $this->get('test-jenkin-plus/3');
-        $response->assertJson([
-            'message' => 'task test success'
-        ], 200);
-
+        $response = $this->get('test-jenkin-plus/5');
         $response->assertStatus(200);
+        // dd($response);
+        $response->assertSee(3);
     }
 }

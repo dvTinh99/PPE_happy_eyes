@@ -18,9 +18,9 @@ Route::get('/', function () {
 //    return view('welcome');
 });
 Route::get('/dvtinh', function () {
-    dd('su doi lan 12');
+    return ('su doi lan 12');
 //    return view('welcome');
 });
 Route::get('test-jenkin-plus/{a}', function($a){
-	dd($a + 1);
+	return $a +1 ;
 });
