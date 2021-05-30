@@ -12,6 +12,7 @@ pipeline {
       steps {
         echo 'Testing'
         sh 'php artisan test'
+        junit 'build/reports/**/*.xml'
       }
     }
 
