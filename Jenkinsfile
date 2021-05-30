@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building'
-        sh 'ls'
+        sh 'composer install'
       }
     }
 
@@ -12,7 +12,6 @@ pipeline {
       steps {
         echo 'Testing'
         sh 'php artisan test'
-        junit 'build/reports/**/*.xml'
       }
     }
 
