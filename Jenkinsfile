@@ -5,7 +5,6 @@ pipeline {
       steps {
         echo 'Building'
         sh 'ls'
-        sh 'composer install'
       }
     }
 
@@ -22,6 +21,10 @@ pipeline {
         echo 'deploing'
       }
     }
-
+  }
+  post{
+      always{
+          emailext body: 'toang', subject: 'jenkin pipeline', to: 'tinh5969@gmail.com'
+      }
   }
 }
