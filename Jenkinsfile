@@ -23,7 +23,7 @@ pipeline {
   }
   post{
       always{
-          emailext body: 'toang', subject: 'jenkin pipeline', to: 'tinh5969@gmail.com'
+          emailext subject: 'jenkin pipeline', to: 'tinh5969@gmail.com'
       }
   }
 }
