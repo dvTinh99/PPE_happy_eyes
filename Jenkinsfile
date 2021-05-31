@@ -8,17 +8,10 @@ pipeline {
       }
     }
 
-    stages{
-        stage('test1'){
-                  steps {
-                    echo 'Testing1'
-                  }
-              }
-        stage('test2'){
-                  steps {
-                    echo 'Testing2'
-                  }
-              }
+    stage('test'){
+      steps {
+        echo 'Testing1'
+      }
     }
 
     stage('Deploy') {
