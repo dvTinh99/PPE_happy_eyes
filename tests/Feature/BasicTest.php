@@ -27,7 +27,7 @@ class BasicTest extends TestCase
             $response = $this->get('test-jenkin-plus/'.$number);
             $response->assertStatus(200);
             // dd($response);
-            $response->assertSee($number +1);
+            $response->assertSee($number);
         }
     }
 }
