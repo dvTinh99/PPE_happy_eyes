@@ -16,7 +16,7 @@ pipeline {
           }
         }
 
-        stage('test perfomence') {
+        stage('test performance') {
           steps {
             echo 'test performance'
           }
