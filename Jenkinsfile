@@ -9,16 +9,16 @@ pipeline {
     }
 
     stages('Test') {
-      steps {
-        echo 'Testing1'
-        sh 'php artisan test'
-      }
-        steps {
-        echo 'Testing2'
-      }
-        steps {
-        echo 'Testing3'
-      }
+        stage('test1){
+                  steps {
+                    echo 'Testing1'
+                  }
+              }
+        stage('test2){
+                  steps {
+                    echo 'Testing2'
+                  }
+              }
     }
 
     stage('Deploy') {
