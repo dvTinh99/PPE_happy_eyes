@@ -25,8 +25,19 @@ pipeline {
     }
 
     stage('Deploy') {
-      steps {
-        echo 'deploing'
+      parallel {
+        stage('Deploy') {
+          steps {
+            echo 'deploing'
+          }
+        }
+
+        stage('') {
+          steps {
+            sleep 5
+          }
+        }
+
       }
     }
 
