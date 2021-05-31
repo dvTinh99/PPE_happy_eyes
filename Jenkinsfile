@@ -10,8 +10,14 @@ pipeline {
 
     stage('Test') {
       steps {
-        echo 'Testing'
+        echo 'Testing1'
         sh 'php artisan test'
+      }
+        steps {
+        echo 'Testing2'
+      }
+        steps {
+        echo 'Testing3'
       }
     }
 
