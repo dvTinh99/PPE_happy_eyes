@@ -8,9 +8,20 @@ pipeline {
       }
     }
 
-    stage('test'){
-      steps {
-        echo 'Testing1'
+    stage('test') {
+      parallel {
+        stage('test') {
+          steps {
+            echo 'Testing1'
+          }
+        }
+
+        stage('test perfomence') {
+          steps {
+            echo 'test performance'
+          }
+        }
+
       }
     }
 
@@ -19,11 +30,13 @@ pipeline {
         echo 'deploing'
       }
     }
+
   }
-  post{
-      always{
-          mail bcc: '', body: '''Hello !
-Come and check your project in jenkins''', cc: '', from: '', replyTo: '', subject: 'Jenkins', to: 'tinh5969@gmail.com'
-      }
+  post {
+    always {
+      mail(bcc: '', body: '''Hello !
+Come and check your project in jenkins''', cc: '', from: '', replyTo: '', subject: 'Jenkins', to: 'tinh5969@gmail.com')
+    }
+
   }
 }
