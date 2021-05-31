@@ -43,10 +43,13 @@ pipeline {
 
   }
   post {
-    always {
+    success {
       mail(bcc: '', body: '''Hello !
 Come and check your project in jenkins''', cc: '', from: '', replyTo: '', subject: 'Jenkins', to: 'tinh5969@gmail.com')
     }
+      failure {
+          echo 'toang'
+      }
 
   }
 }
