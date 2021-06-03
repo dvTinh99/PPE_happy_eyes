@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b35f8487a4df74c96ae55c18e9e7e8e9",
+    "content-hash": "0146583fdca1123faf36aebeeaebfe73",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2556,52 +2556,6 @@
                 }
             ],
             "time": "2021-04-19T03:20:48+00:00"
-        },
-        {
-            "name": "ppe/dvtinh",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dvTinh99/ppe-dvtinh99.git",
-                "reference": "939bd0c6900713515286dd233022cf39ef8efbd4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dvTinh99/ppe-dvtinh99/zipball/939bd0c6900713515286dd233022cf39ef8efbd4",
-                "reference": "939bd0c6900713515286dd233022cf39ef8efbd4",
-                "shasum": ""
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "ppe\\dvtinh\\Providers\\CoreDBServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "ppe\\dvtinh_root\\": "./",
-                    "ppe\\dvtinh\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "dvtinh99",
-                    "email": "tinh5969@gmail.com"
-                }
-            ],
-            "description": "this is base db ppe smile-eyes",
-            "support": {
-                "issues": "https://github.com/dvTinh99/ppe-dvtinh99/issues",
-                "source": "https://github.com/dvTinh99/ppe-dvtinh99/tree/main"
-            },
-            "time": "2021-06-03T04:05:06+00:00"
         },
         {
             "name": "psr/container",
@@ -8357,9 +8311,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "ppe/dvtinh": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
