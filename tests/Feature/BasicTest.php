@@ -20,14 +20,13 @@ class BasicTest extends TestCase
     // }
     public function test_plus()
     {
-        
-        ///
-       for ($i=0; $i < 20 ; $i++) { 
+        for ($i=0; $i < 9 ; $i++) { 
             $number = $i ;
             $response = $this->get('test-jenkin-plus/'.$number);
             $response->assertStatus(200);
             // dd($response);
-            $response->assertSee($number + 1);
+            $response->assertSee($number +1);
         }
+       
     }
 }
