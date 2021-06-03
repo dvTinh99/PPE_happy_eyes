@@ -21,6 +21,3 @@ Route::get('/dvtinh', function () {
     return ('su doi lan 12');
 //    return view('welcome');
 });
-Route::get('test-jenkin-plus/{a}', function($a){
-	return $a +1 ;
-});
