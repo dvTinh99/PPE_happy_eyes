@@ -13,7 +13,6 @@ pipeline {
         stage('test') {
           steps {
             echo 'Testing1'
-             sh 'php artisan test'
           }
         }
 
